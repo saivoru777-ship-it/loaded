@@ -46,25 +46,30 @@
   <div id="produce-detail" hidden></div>
 
   <div id="produce-list">
-    <p class="lede">Produce has no barcode, so no scanner can help you. What exists instead is better: the <b>USDA Pesticide Data Program</b>, which washes, peels and scrubs samples the way you would at home, then runs them in an accredited lab. Tap any item for nutrition, red flags, green flags and handling.</p>
+    <p class="lede">Produce has no barcode, so no scanner can help you. What exists instead is better: the <b>USDA Pesticide Data Program</b>, which washes, peels and scrubs samples the way you would at home, then runs them in an accredited lab. Tap any item for what to look for, what to walk away from, and how to keep it.</p>
 
-    <h2 class="sec">Worth the organic premium · ranked worst first</h2>
-    <div class="tiles" id="g-dirty" data-list></div>
+    <div class="scale" aria-label="Residue scale, cleanest to worst">
+      <div class="sc sc-cleanest">Cleanest</div>
+      <div class="sc sc-clean">Clean</div>
+      <div class="sc sc-tidy">Tidy</div>
+      <div class="sc sc-passable">Passable</div>
+      <div class="sc sc-grubby">Grubby</div>
+      <div class="sc sc-unclean">Unclean</div>
+      <div class="sc sc-avoid">Avoid</div>
+    </div>
+    <p class="nutri-note">Ratings appear when you open an item, not before</p>
 
-    <h2 class="sec">Just outside the twelve · flagged for toxicity</h2>
-    <div class="tiles" id="g-watch" data-list></div>
+    <div style="display:flex;justify-content:flex-end;margin:0 0 12px">
+      <button class="sort" id="sort-toggle" type="button">Sort: A&ndash;Z</button>
+    </div>
 
-    <h2 class="sec">Buy conventional, save the money</h2>
-    <div class="tiles" id="g-clean" data-list></div>
-
-    <h2 class="sec">Middle of the guide · neither list</h2>
-    <div class="tiles" id="g-mid" data-list></div>
+    <div class="tiles" id="tile-grid" data-list></div>
 
     <div class="note">
-      <h4>Read this before you panic</h4>
-      <p>Over <b>99% of USDA samples came in under the legal residue limit</b>, and the Alliance for Food and Farming disputes EWG's ranking method, arguing it counts detections without properly weighting dose. One toxicologist's illustration: you'd need to eat roughly 145 pounds of conventional spinach a day, every serving at the highest residue ever recorded, before reaching a level considered harmful.</p>
-      <p>EWG agrees with its critics on the part that matters: <b>eat the vegetables.</b> This list is for deciding where a limited organic budget goes — not whether to buy produce at all. Skipping spinach because it ranked first is the worst possible use of this page.</p>
-      <p>One honest gap: EWG publishes a full ordered ranking of all 47 crops, but only the twelve worst and fifteen cleanest are published as ordered lists. Items marked "middle of the guide" here sit somewhere in between, and this build doesn't claim to know exactly where.</p>
+      <h4>Why the rating isn't on the tile</h4>
+      <p>Seeing <b>Avoid</b> stamped on spinach before you see anything else makes people stop buying spinach. That is the wrong outcome from this data. Over <b>99% of USDA samples came in under the legal residue limit</b>, and the Alliance for Food and Farming disputes EWG's ranking method, arguing it counts detections without properly weighting dose. One toxicologist's illustration: you'd need to eat around 145 pounds of conventional spinach a day, every serving at the highest residue ever recorded, to reach a level considered harmful.</p>
+      <p>The rating is for deciding <b>where a limited organic budget goes</b> — nothing more. A conventional vegetable beats no vegetable every time, and EWG agrees with its critics on exactly that point.</p>
+      <p>One honest gap: EWG publishes an ordered ranking for the twelve worst and fifteen cleanest crops only. The cut points between our seven tiers are ours, not EWG's, and <b>Tidy</b> carries the crops flagged in neither direction rather than pretending to a precision the published data doesn't support.</p>
     </div>
   </div>
 </section>
@@ -141,6 +146,10 @@
     <p><input id="plu-in" class="find" inputmode="numeric" maxlength="5" placeholder="e.g. 94011" aria-label="PLU code" style="max-width:200px;flex:none"></p>
     <div id="plu-out"><span class="verdict v-mid">Enter the number from the sticker</span><p style="margin:10px 0 0;font-size:14.5px;color:var(--ink2)">Loose produce carries a 4 or 5 digit PLU code.</p></div>
   </div>
+
+  <h2 class="sec">What is actually readable on the packaging</h2>
+  <p class="lede">There is no honest database of "best produce brand by region" — produce brands are commodity growers who rotate by season and shipping lane, so the label in your store changes week to week. What is fixed is which claims mean something.</p>
+  <div class="grid two" id="label-reads" data-list></div>
 
   <h2 class="sec">Where to send a barcode</h2>
   <div class="grid two" data-list>

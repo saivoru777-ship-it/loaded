@@ -12,10 +12,10 @@ No build step, no dependencies, no tracking, no backend. Three files and a style
 
 | Section | What it does |
 |---|---|
-| **Produce** | 44 fruits and vegetables tiered by the USDA Pesticide Data Program results. Tap any item for nutrition per 100 g, red flags, green flags, and handling. |
+| **Produce** | 44 fruits and vegetables. Tap any item for nutrition, a description, buy signals, walk-away signals, handling, and a residue rating. |
 | **Meat labels** | Every common claim sorted into *independently audited*, *affidavit only*, and *means nothing*. |
 | **Packaging** | What a foam tray, absorbent pad and stretch film actually are, plus the styrene migration numbers and what they imply. |
-| **Scan & verify** | A PLU sticker decoder, plus where to send a barcode. |
+| **Scan & verify** | A PLU sticker decoder, a guide to which packaging claims mean anything, plus where to send a barcode. |
 | **The apps** | An honest read on Yuka, Olive, Ivy, Trash Panda, EXPOSR and Clean Label Project. |
 
 ## Deploying to GitHub Pages
@@ -44,15 +44,25 @@ Everything lives in `assets/data.js`. Each produce entry:
 ```js
 {
   id:"blueberries", name:"Blueberries",
-  tier:"dirty",          // dirty | watch | clean | mid
-  rank:12,               // position within the tier, or null
-  avg:"4+",              // avg pesticides per sample
-  n:{ kcal, fiber, sugar, vitc, k, star },
-  red:[...], green:[...], hand:[...]
+  tier:"grubby",   // cleanest|clean|tidy|passable|grubby|unclean|avoid
+  src:"Ranked 12th of 47 crops · EWG 2026, from USDA data",
+  n:{ kcal, fiber, sugar, vitc, k },
+  about:"...",     // description + benefits, sits under the nutrition row
+  green:[...],     // BUY SIGNALS — what a good one looks like in your hand
+  red:[...],       // WALK-AWAY SIGNALS + residue-reduction actions
+  hand:[...]       // post-purchase storage and food safety
 }
 ```
 
-Add an object to the array and it appears in the right group automatically, searchable, with its own detail view and `#p/id` deep link.
+Add an object to the array and it appears automatically, searchable, with its own detail view and `#p/id` deep link.
+
+### The flag rule
+
+Every `red` line must be something the shopper can **spot or do**. "Spinach has no skin to peel" is a fact about the crop, not a flag — the shopper can't act on it, so it belongs in `about` or nowhere. "Water pooled in the bottom of the clamshell" is a flag. Lines that just restate risk are fear, not information, and don't belong in this field.
+
+### Why ratings are hidden until you open an item
+
+Labelling spinach **Avoid** on a browsable grid makes people stop buying spinach, which is the opposite of what the data supports. The rating decides where an organic budget goes; it does not decide whether to eat vegetables. Tiles stay neutral and the rating appears with the context that makes it usable.
 
 ## Sources
 
@@ -66,7 +76,8 @@ Add an object to the array and it appears in the right group automatically, sear
 
 Stated plainly, because a tool like this is only worth anything if it's honest about its edges.
 
-- EWG publishes a full ordered ranking of all 47 crops, but only the worst twelve and cleanest fifteen are published as ordered lists. Items tiered `mid` here sit somewhere in between and this build does not claim to know where.
+- EWG publishes an ordered ranking for the worst twelve and cleanest fifteen crops only. **The cut points between the seven tiers are ours, not EWG's**, and `tidy` honestly carries the crops flagged in neither direction rather than inventing positions for them.
+- There is no brand-by-region database and there won't be one. Produce brands are commodity growers who rotate by season and shipping lane, so the label in a given store changes week to week. The Scan & verify tab covers what's actually readable on packaging instead.
 - Nutrition figures are population reference values, not measurements of the item in your hand. Variety, ripeness and growing conditions all move them.
 - Residue rankings shift year to year. The USDA typically releases results about two years after collection, and rotates which crops it samples.
 - Nothing here detects adulteration. That needs a mass spectrometer, not a phone.

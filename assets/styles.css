@@ -73,10 +73,7 @@ h2.sec:first-of-type{margin-top:0}
 .tile{text-align:left;background:var(--card);border:1px solid var(--rule);border-left:5px solid var(--rule);
   border-radius:2px;padding:13px 14px;cursor:pointer;font:inherit;color:inherit;display:block;width:100%}
 .tile:hover{background:#EEF2F1}
-.tile.t-dirty{border-left-color:var(--ink)}
-.tile.t-watch{border-left-color:var(--ochre)}
-.tile.t-clean{border-left-color:#5C8C77}
-.tile.t-mid{border-left-color:#A9B5B2}
+/* tiles are intentionally neutral — rating lives inside the detail view */
 .tile .tn{font-weight:600;font-size:15.5px;line-height:1.25;display:block}
 .tile .tm{font-family:"Martian Mono",monospace;font-size:9px;letter-spacing:.07em;
   text-transform:uppercase;color:var(--ink3);margin-top:6px;display:block}
@@ -157,3 +154,64 @@ footer ul{margin:0 0 18px;padding-left:17px}
 footer li{font-size:13.5px;color:var(--ink2);margin-bottom:5px}
 footer a{color:var(--stamp)}
 .disclaim{font-size:12.5px;color:var(--ink3);max-width:72ch;line-height:1.6}
+
+
+/* ---------- v2: description block ---------- */
+.nutri-note{font-family:"Martian Mono",monospace;font-size:9px;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--ink3);margin:0 0 22px}
+.about{font-size:17px;line-height:1.62;color:var(--ink2);max-width:66ch;margin:0 0 30px;
+  padding-left:16px;border-left:2px solid var(--rule)}
+
+/* ---------- v2: flags ---------- */
+.flag h4{font-size:10px;line-height:1.5}
+.flags{margin-bottom:10px}
+.flag.hand{margin-bottom:30px}
+
+/* ---------- v2: rating block, revealed only inside detail ---------- */
+.rating{border:1px solid var(--rule);border-top:3px solid var(--ink);
+  background:var(--card);border-radius:2px;padding:20px 22px}
+.r-top{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.r-eyebrow{font-family:"Martian Mono",monospace;font-size:9px;font-weight:600;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--ink3)}
+.meter{display:flex;gap:4px}
+.pip{width:22px;height:7px;border-radius:1px;background:var(--rule)}
+.pip.lit{background:#B4BEBC}
+.pip.on{background:var(--ink);height:11px;margin-top:-2px}
+.r-label{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;
+  font-size:38px;line-height:1;letter-spacing:-.035em;margin:14px 0 10px}
+.r-blurb{margin:0 0 12px;font-size:14.5px;color:var(--ink2);line-height:1.6;max-width:64ch}
+.r-src{margin:0;font-family:"Martian Mono",monospace;font-size:9px;letter-spacing:.05em;
+  text-transform:uppercase;color:var(--ink3);line-height:1.6}
+
+.rating-cleanest{border-top-color:#2F6B4F} .rating-cleanest .r-label{color:#2F6B4F} .rating-cleanest .pip.on{background:#2F6B4F}
+.rating-clean{border-top-color:#4A7D63}    .rating-clean .r-label{color:#4A7D63}    .rating-clean .pip.on{background:#4A7D63}
+.rating-tidy{border-top-color:#6B7276}     .rating-tidy .r-label{color:#5A6266}     .rating-tidy .pip.on{background:#6B7276}
+.rating-passable{border-top-color:#8A6300} .rating-passable .r-label{color:#8A6300} .rating-passable .pip.on{background:#8A6300}
+.rating-grubby{border-top-color:#8A5A1E}   .rating-grubby .r-label{color:#8A5A1E}   .rating-grubby .pip.on{background:#8A5A1E}
+.rating-unclean{border-top-color:#8F3B2E}  .rating-unclean .r-label{color:#8F3B2E}  .rating-unclean .pip.on{background:#8F3B2E}
+.rating-avoid{border-top-color:#A32C2C}    .rating-avoid .r-label{color:#A32C2C}    .rating-avoid .pip.on{background:#A32C2C}
+
+/* ---------- v2: sort toggle ---------- */
+.sort{font-family:"Martian Mono",monospace;font-size:10px;font-weight:600;letter-spacing:.08em;
+  text-transform:uppercase;padding:8px 13px;border:1.5px solid var(--rule);background:var(--card);
+  color:var(--ink2);border-radius:2px;cursor:pointer;white-space:nowrap}
+.sort:hover{border-color:var(--ink);color:var(--ink)}
+.sort:focus-visible{outline:3px solid var(--stamp);outline-offset:2px}
+
+/* ---------- v2: scale key ---------- */
+.scale{display:flex;gap:3px;margin:0 0 8px;flex-wrap:wrap}
+.sc{flex:1;min-width:74px;padding:9px 8px;border-radius:2px;text-align:center;
+  font-family:"Martian Mono",monospace;font-size:8.5px;font-weight:600;
+  letter-spacing:.05em;text-transform:uppercase;color:#fff}
+.sc-cleanest{background:#2F6B4F} .sc-clean{background:#4A7D63} .sc-tidy{background:#6B7276}
+.sc-passable{background:#8A6300} .sc-grubby{background:#8A5A1E} .sc-unclean{background:#8F3B2E}
+.sc-avoid{background:#A32C2C}
+
+/* ---------- v2: label reads ---------- */
+.read{background:var(--card);border:1px solid var(--rule);border-left:5px solid var(--rule);
+  border-radius:2px;padding:15px 16px}
+.read.ok{border-left-color:var(--stamp)}
+.read h3{font-weight:600;font-size:16px;margin:8px 0 5px;line-height:1.25}
+.read p{margin:0;font-size:14px;color:var(--ink2);line-height:1.5}
+
+.d-head{padding-bottom:14px;margin-bottom:20px}
