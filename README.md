@@ -18,24 +18,13 @@ No build step, no dependencies, no tracking, no backend. Three files and a style
 | **Scan & verify** | A PLU sticker decoder, a guide to which packaging claims mean anything, plus where to send a barcode. |
 | **The apps** | An honest read on Yuka, Olive, Ivy, Trash Panda, EXPOSR and Clean Label Project. |
 
-## Deploying to GitHub Pages
+## Running it
 
-```bash
-# from inside this folder
-git remote add origin https://github.com/YOUR-USERNAME/loaded.git
-git branch -M main
-git push -u origin main
-```
+**Live:** [saivoru777-ship-it.github.io/loaded](https://saivoru777-ship-it.github.io/loaded/)
 
-Then on GitHub: **Settings → Pages → Source: Deploy from a branch → `main` / `root` → Save.**
+Locally, open `index.html` in a browser — no server needed. Data is loaded as a plain script rather than via `fetch()`, specifically so it works from `file://`.
 
-Live in about a minute at `https://YOUR-USERNAME.github.io/loaded/`.
-
-The repo is already initialised with a commit, and `.nojekyll` is included so GitHub serves the `assets/` folder untouched.
-
-## Running locally
-
-Open `index.html` in a browser. Data is loaded as a plain script rather than via `fetch()`, specifically so it works from `file://` without a local server.
+`loaded-standalone.html` is the same app with the data, script and stylesheet inlined into a single file, for sharing or offline use.
 
 ## Editing the data
 
