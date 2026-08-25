@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Loaded — what the label isn't telling you</title>
+<meta name="description" content="Grocery decisions rebuilt from the primary testing: USDA pesticide data for produce, a decoder for meat label claims, and what packaging actually does.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&family=Martian+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+<div class="wrap">
+
+<header class="mast">
+  <div class="eyebrow">Grocery decisions · rebuilt from the primary testing</div>
+  <h1 class="wordmark">LOAD<em>ED</em></h1>
+  <p class="deck">Most food apps read the ingredient list. The ingredient list is often the thing that's lying. <b>Loaded skips the label and goes to whoever actually ran the test.</b></p>
+  <div class="inspect" aria-hidden="true">
+    <span class="l1">CHECK THE</span><span class="l2">SOURCE</span>
+    <span class="l3">NOT THE FRONT<br>OF THE BOX</span>
+  </div>
+</header>
+
+<section class="strip" aria-label="Key figures">
+  <div class="stat"><div class="n">54,344</div><div class="t">produce samples behind the 2026 USDA residue data</div></div>
+  <div class="stat"><div class="n">75%</div><div class="t">of conventional samples carried pesticide residue</div></div>
+  <div class="stat"><div class="n">99%+</div><div class="t">of those same samples were still under the legal limit</div></div>
+  <div class="stat"><div class="n">0</div><div class="t">"raised without antibiotics" claims the USDA lab-tests before approving</div></div>
+</section>
+
+<div class="controls">
+  <div class="tabs" role="tablist" aria-label="Sections">
+    <button class="tab" role="tab" aria-selected="true" data-panel="produce">Produce</button>
+    <button class="tab" role="tab" aria-selected="false" data-panel="meat">Meat labels</button>
+    <button class="tab" role="tab" aria-selected="false" data-panel="pack">Packaging</button>
+    <button class="tab" role="tab" aria-selected="false" data-panel="scan">Scan &amp; verify</button>
+    <button class="tab" role="tab" aria-selected="false" data-panel="apps">The apps</button>
+  </div>
+  <input class="find" type="search" placeholder="Search 44 fruits and vegetables — try blueberries, kale, avocado…" aria-label="Search">
+</div>
+
+<!-- ================= PRODUCE ================= -->
+<section class="panel" id="produce" role="tabpanel">
+  <div id="produce-detail" hidden></div>
+
+  <div id="produce-list">
+    <p class="lede">Produce has no barcode, so no scanner can help you. What exists instead is better: the <b>USDA Pesticide Data Program</b>, which washes, peels and scrubs samples the way you would at home, then runs them in an accredited lab. Tap any item for nutrition, red flags, green flags and handling.</p>
+
+    <h2 class="sec">Worth the organic premium · ranked worst first</h2>
+    <div class="tiles" id="g-dirty" data-list></div>
+
+    <h2 class="sec">Just outside the twelve · flagged for toxicity</h2>
+    <div class="tiles" id="g-watch" data-list></div>
+
+    <h2 class="sec">Buy conventional, save the money</h2>
+    <div class="tiles" id="g-clean" data-list></div>
+
+    <h2 class="sec">Middle of the guide · neither list</h2>
+    <div class="tiles" id="g-mid" data-list></div>
+
+    <div class="note">
+      <h4>Read this before you panic</h4>
+      <p>Over <b>99% of USDA samples came in under the legal residue limit</b>, and the Alliance for Food and Farming disputes EWG's ranking method, arguing it counts detections without properly weighting dose. One toxicologist's illustration: you'd need to eat roughly 145 pounds of conventional spinach a day, every serving at the highest residue ever recorded, before reaching a level considered harmful.</p>
+      <p>EWG agrees with its critics on the part that matters: <b>eat the vegetables.</b> This list is for deciding where a limited organic budget goes — not whether to buy produce at all. Skipping spinach because it ranked first is the worst possible use of this page.</p>
+      <p>One honest gap: EWG publishes a full ordered ranking of all 47 crops, but only the twelve worst and fifteen cleanest are published as ordered lists. Items marked "middle of the guide" here sit somewhere in between, and this build doesn't claim to know exactly where.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= MEAT ================= -->
+<section class="panel" id="meat" role="tabpanel" hidden>
+  <p class="lede">The USDA approves most animal-raising claims <b>on the strength of the producer's own paperwork</b>. As a former Deputy Under Secretary for Food Safety put it, the agency's authority doesn't extend back to the farm — it can't independently confirm an animal was grass fed or free range, so it leans on outside certifiers instead. That's why the seal matters more than the sentence.</p>
+
+  <h2 class="sec">Claims that carry a real audit</h2>
+  <div class="grid two" data-list>
+    <div class="tag ok"><span class="verdict v-real">Independently verified</span><h3>USDA Organic</h3><p>Legally defined and third-party inspected. No antibiotics, no added hormones, organic feed. Weak spot: it says little about space per animal or genuine outdoor access.</p></div>
+    <div class="tag ok"><span class="verdict v-real">Independently verified</span><h3>Animal Welfare Approved (A Greener World)</h3><p>The strictest of the common seals. Pasture required, no confinement, no antibiotics, no synthetic hormones, audited annually.</p></div>
+    <div class="tag ok"><span class="verdict v-real">Independently verified</span><h3>American Grassfed Association</h3><p>Goes well past the USDA grass-fed definition — adds no antibiotics, no synthetic hormones and no confinement, audited through A Greener World.</p></div>
+    <div class="tag ok"><span class="verdict v-real">Independently verified</span><h3>Certified Humane · Global Animal Partnership</h3><p>Audited welfare standards. GAP uses a tiered 1–5+ scale, so the number on the tag tells you how far past baseline the farm actually goes.</p></div>
+    <div class="tag ok"><span class="verdict v-real">USDA-audited program</span><h3>"USDA Process Verified" shield</h3><p>Not a claim on its own — a shield saying the USDA audited the company's own verification program. Next to a no-antibiotics claim, it makes that claim substantially more trustworthy.</p></div>
+  </div>
+
+  <h2 class="sec">Backed by a signed form and nothing else</h2>
+  <div class="grid two" data-list>
+    <div class="tag"><span class="verdict v-paper">Affidavit only</span><h3>"No antibiotics added" / "Raised without antibiotics"</h3><p>Legally defined by FSIS but substantiated by affidavit — no independent verification required. Two 2022 studies found the claim failing in practice: one detected antibiotic residues in cattle from 42% of tested "raised without antibiotics" herds; another found drugs in meat certified "no antibiotics ever." Look for a third-party seal or the Process Verified shield alongside it.</p></div>
+    <div class="tag"><span class="verdict v-paper">Affidavit only</span><h3>"Grass fed" / "100% grass fed"</h3><p>USDA definition: never given grain, pasture access during grazing season — documented by written statement, not verified. It leaves a confinement loophole and permits antibiotics and pasture herbicides. Grass fed alone is not a health claim.</p></div>
+    <div class="tag"><span class="verdict v-paper">Undefined</span><h3>"Free range" / "Pasture raised"</h3><p>In its 2024 guidance FSIS explicitly declined to codify what these mean, saying fixed definitions could stifle innovation. Without a certifier's logo beside them, treat them as marketing.</p></div>
+  </div>
+
+  <h2 class="sec">Claims that mean nothing at all</h2>
+  <div class="grid two" data-list>
+    <div class="tag"><span class="verdict v-null">Says nothing about raising</span><h3>"Natural" / "All Natural"</h3><p>The most misleading term at the meat case. The USDA definition covers only what happens <em>after slaughter</em> — minimally processed, no artificial ingredients. It tells you nothing about feed, antibiotics, hormones or how the animal lived.</p></div>
+    <div class="tag"><span class="verdict v-null">Already required by law</span><h3>"No hormones added" — on pork or poultry</h3><p>Federal law already prohibits hormones in pigs and poultry, so the label is describing the legal baseline. Packages must carry a disclaimer saying so, in small print. On <em>beef</em> the claim does mean something.</p></div>
+    <div class="tag"><span class="verdict v-null">Loophole phrasing</span><h3>"No antibiotics used for growth promotion"</h3><p>Read it closely. Antibiotics may still have been used, just for a different stated reason. Not the same as "raised without antibiotics."</p></div>
+  </div>
+
+  <div class="note">
+    <h4>The two-second version at the counter</h4>
+    <p>Ignore the adjectives on the front. Look for a <b>logo with an organization's name on it</b>. If there's no logo, you're reading the producer's own description of themselves, approved by an agency that never visited the farm.</p>
+  </div>
+</section>
+
+<!-- ================= PACKAGING ================= -->
+<section class="panel" id="pack" role="tabpanel" hidden>
+  <p class="lede">A supermarket meat package is three separate materials, and <b>the variables that actually drive chemical migration are heat, fat and time</b> — not the mere presence of plastic.</p>
+
+  <h2 class="sec">What you're holding</h2>
+  <div class="grid two" data-list>
+    <div class="tag"><h3>The foam tray</h3><p>Expanded polystyrene — plastic #6, what most people call Styrofoam. Styrene can migrate into food, and how much depends on residual styrene in the material, the food's fat content and pH, storage temperature, and contact time.</p><div class="meta">EPS · plastic #6</div></div>
+    <div class="tag"><h3>The absorbent pad</h3><p>Usually silica gel or cellulose sealed inside a perforated plastic film. It pulls liquid away from the meat, which genuinely reduces bacterial growth. Pull it out and bin it when you unwrap — a soaked pad against the meat works against you.</p><div class="meta">silica or cellulose in film</div></div>
+    <div class="tag"><h3>The clear film</h3><p>Prepackaged cases usually use polyethylene. Meat wrapped at the store's own counter is more often stretch film, historically PVC with plasticizers. Migration concentrates where film presses against <em>fat</em> — the one contact point worth minimizing.</p><div class="meta">LDPE or PVC stretch film</div></div>
+  </div>
+
+  <h2 class="sec">The numbers</h2>
+  <div class="note">
+    <h4>Time and temperature, not plastic itself</h4>
+    <p>The clearest recent measurements come from dairy packed in polystyrene. Refrigerated yogurt and cream measured <b>5 to 30 µg/kg of styrene</b> at their best-before date. Single-serve coffee creamer in the same material, held at <b>room temperature for about 190 days</b>, measured <b>401 µg/kg</b>. Same plastic, an order of magnitude apart, and the only differences are warmth and time.</p>
+    <p>Raw meat sits cold and gets eaten within days, which puts it at the low end of that range. The European Food Safety Authority is currently re-evaluating styrene for food-contact materials and a restriction is expected — a fair signal that this is a live scientific question, not settled in either direction.</p>
+  </div>
+
+  <h2 class="sec">Five things worth actually doing</h2>
+  <div class="grid" data-list>
+    <div class="tag ok"><h3>1 · Never heat anything in the tray</h3><p>Not the microwave, not a warm car, not the counter while you do something else. Heat is the biggest single multiplier on migration and it's fully under your control.</p></div>
+    <div class="tag ok"><h3>2 · Repackage before freezing</h3><p>Freezing takes contact time from days to months. Move it to glass, a freezer bag, or butcher paper. You'll also get less freezer burn, which is the reason a butcher would give you.</p></div>
+    <div class="tag ok"><h3>3 · Buy from the counter, not the case</h3><p>Ask for it in paper. Costs nothing, skips the foam tray and stretch film entirely, and you usually get a fresher cut and someone who can tell you where it came from.</p></div>
+    <div class="tag ok"><h3>4 · Trim fat that touched the film</h3><p>If a fatty cut sat pressed against stretch wrap, that fat-film interface is where plasticizer concentrates. Trimming it is a thirty-second habit.</p></div>
+    <div class="tag ok"><h3>5 · Keep it cold and eat it soon</h3><p>Anticlimactic, but it's what the data supports. Back of the fridge, not the door. The habit that prevents food poisoning also minimizes migration.</p></div>
+  </div>
+</section>
+
+<!-- ================= SCAN ================= -->
+<section class="panel" id="scan" role="tabpanel" hidden>
+  <p class="lede">You asked about photographing produce. Being straight with you: <b>no app can identify a fruit from a photo and tell you what's on it</b> — contamination data doesn't exist per-item, only per-crop, which is what the produce tab already gives you. Here's what does work.</p>
+
+  <h2 class="sec">The sticker actually tells you something</h2>
+  <div class="note" style="border-left-color:var(--good)">
+    <h4 style="color:var(--good)">PLU decoder</h4>
+    <p>That little number on loose produce is a PLU code, and one digit of it is meaningful. Type it in:</p>
+    <p><input id="plu-in" class="find" inputmode="numeric" maxlength="5" placeholder="e.g. 94011" aria-label="PLU code" style="max-width:200px;flex:none"></p>
+    <div id="plu-out"><span class="verdict v-mid">Enter the number from the sticker</span><p style="margin:10px 0 0;font-size:14.5px;color:var(--ink2)">Loose produce carries a 4 or 5 digit PLU code.</p></div>
+  </div>
+
+  <h2 class="sec">Where to send a barcode</h2>
+  <div class="grid two" data-list>
+    <div class="tag ok"><h3>Open Food Facts</h3><p>Free, open-source, no subscription and no commercial incentive to scare you. Scans packaged goods for ingredients, additives and nutrition. The database is community-built, so coverage varies.</p><p style="margin-top:9px"><a href="https://world.openfoodfacts.org/" target="_blank" rel="noopener">world.openfoodfacts.org</a></p></div>
+    <div class="tag ok"><h3>Clean Label Project</h3><p>Free app with results from actual accredited lab testing — heavy metals, 300+ pesticides, glyphosate, bisphenols, phthalates. Best coverage on baby food, formula, protein powder and supplements.</p><p style="margin-top:9px"><a href="https://cleanlabelproject.org/app/" target="_blank" rel="noopener">cleanlabelproject.org/app</a></p></div>
+    <div class="tag ok"><h3>USDA Pesticide Data Program</h3><p>The raw source behind the produce tab. Free and public. If you ever want to check the ranking against the underlying numbers yourself, this is where they live.</p><p style="margin-top:9px"><a href="https://www.ams.usda.gov/datasets/pdp" target="_blank" rel="noopener">ams.usda.gov/datasets/pdp</a></p></div>
+    <div class="tag"><h3>FDA recall alerts</h3><p>The one genuinely time-sensitive food feed worth subscribing to. Outbreak and recall notices, free by email.</p><p style="margin-top:9px"><a href="https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts" target="_blank" rel="noopener">fda.gov recalls</a></p></div>
+  </div>
+
+  <div class="note">
+    <h4>What a scanner genuinely cannot do</h4>
+    <p>Detect adulteration. If a bottle claims pure avocado oil and contains sunflower oil, the label is the lie — catching that takes a mass spectrometer running fatty acid, sterol and tocopherol profiles. A 2026 UC Davis study found 48 of 54 avocado-oil-labeled products adulterated with cheaper oils. No barcode can see through that; only per-lot third-party certification can.</p>
+  </div>
+</section>
+
+<!-- ================= APPS ================= -->
+<section class="panel" id="apps" role="tabpanel" hidden>
+  <p class="lede">You've probably seen these advertised. They're heavily marketed on Instagram and TikTok, and most are subscription businesses. Here's what they do and don't do.</p>
+
+  <div class="grid" data-list>
+    <div class="tag"><span class="verdict v-paper">Reads the label</span><h3>Yuka · Trash Panda · Ivy · EXPOSR · Olive</h3><p>These scan a barcode and score the <em>ingredient list</em>. Real value for additives, dyes, allergens, sugar and nutrition — Yuka and Trash Panda do it free. But the method has a hard ceiling: if the label is the lie, no barcode sees through it. Users also report the same product returning different scores on different scans.</p><div class="meta">good for: additives, allergens, nutrition</div></div>
+    <div class="tag"><span class="verdict v-null">Can't help here</span><h3>Any scanner, for produce or the meat case</h3><p>Loose produce has no barcode. Meat packages carry a barcode encoding weight and price, not provenance. This entire category is structurally blind to two of the three things you're asking about.</p></div>
+    <div class="tag ok"><span class="verdict v-real">Actual lab data</span><h3>Clean Label Project</h3><p>A nonprofit that buys products at retail — not samples brands send in — and tests at Ellipse Analytics, an ISO/IEC 17025 lab accredited by ANAB. Two honest caveats: partly funded by certification fees from brands carrying its mark, and the panel does not include PFAS.</p><div class="meta">ISO 17025 accredited · ANAB</div></div>
+    <div class="tag"><span class="verdict v-paper">Reports, not a database</span><h3>EWG Healthy Living · Mamavation</h3><p>For PFAS specifically there is no scanner and no lookup. These groups commission testing one category at a time and publish it as an article you read.</p></div>
+  </div>
+
+  <div class="note">
+    <h4>What actually works</h4>
+    <p>A free scanner for additives and nutrition, this site for produce and meat, and <b>certification logos as your filter for everything else</b>. A brand paying for per-lot third-party verification has something to lose. A brand writing "natural" on a package does not.</p>
+  </div>
+</section>
+
+<footer>
+  <h4>Where this comes from</h4>
+  <ul>
+    <li>USDA Pesticide Data Program, as analyzed in EWG's 2026 Shopper's Guide to Pesticides in Produce — 54,344 samples, 47 crops, 264 pesticides detected — and the Alliance for Food and Farming's published objections to that methodology</li>
+    <li>USDA FoodData Central reference values for nutrition, per 100 g raw unless noted</li>
+    <li>USDA FSIS 2024 guidance on substantiating animal-raising claims; A Greener World's label guide; Consumer Reports on ground beef labeling</li>
+    <li><em>Science</em> (2022) on antibiotic residues in "raised without antibiotics" cattle; Farm Forward's parallel 2022 findings</li>
+    <li>Peer-reviewed styrene migration measurements from market samples of polystyrene-packed dairy; EFSA's ongoing re-evaluation of styrene in food-contact materials</li>
+    <li>UC Davis, <em>Applied Food Research</em> (2026), on avocado and olive oil authenticity in processed foods</li>
+  </ul>
+  <p class="disclaim">Loaded is a reading of publicly available testing, current as of August 2026. Residue rankings shift year to year and lab results apply to the lots tested, not to every batch a brand produces. Nutrition figures are reference values, not measurements of the item in your hand. This is shopping guidance, not medical advice — and the strongest finding in all of the above is still that eating fruit and vegetables beats not eating them.</p>
+</footer>
+
+</div>
+<script src="assets/data.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>
